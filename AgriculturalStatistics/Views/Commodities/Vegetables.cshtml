@@ -1,0 +1,93 @@
+﻿
+@using AgriculturalStatistics.Models
+@model IEnumerable<Commodity>
+@{
+    ViewBag.Title = "Vegetables";
+}
+<div>Index</div>
+
+<p class="text-right">
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<h3>Vegetables</h3>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
+            <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
+            <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
+            <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
+            <th>@Html.DisplayNameFor(e => e.DataItem)</th>
+            <th>@Html.DisplayNameFor(e => e.Value)</th>
+            <th>@Html.DisplayNameFor(e => e.CV)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (IEnumerable<Commodity>)ViewData["Vegetables"])
+        {
+        <tr>
+            <td>@item.CommodityID</td>
+            <td>@item.CommodityName</td>
+            <td>@item.Group.GroupName</td>
+            <td>@item.Sector.SectorName</td>
+            <td>@item.DataItem</td>
+            <td>@item.Value</td>
+            <td>@item.CV</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CommodityID }) |
+                @Html.ActionLink("Details", "Detail", new { id = item.CommodityID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CommodityID })
+            </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+<!--<table class="table">
+    <tr>
+        <th>
+  @*          @Html.DisplayNameFor(model => model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeCity)
+        </th>
+        <th></th>
+    </tr>
+
+
+   @* @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                  @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeSalary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeCity)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }) |
+                    @Html.ActionLink("Details", "Detail", new { id = item.EmployeeId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId })*@
+                </td>
+            </tr>
+
+        }
+    }
+    else
+    {
+        <td colspan="4" class="text-center"><b>No Data Available . Please Add Data By CLick On Create Button</b></td>
+
+    }
+</table-->     

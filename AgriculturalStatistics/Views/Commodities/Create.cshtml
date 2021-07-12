@@ -1,0 +1,104 @@
+﻿@model Commodity
+
+@{ 
+    ViewBag.Title = "Create Commodity";
+
+
+<div>Create</div>
+
+<img src="~/favicon.ico" />
+<form asp-controller="Commodities" asp-action="Create"method="post" class="form-horizontal">
+    <div class="form-group">
+        <div class="row">
+            <label asp-for="CommodityName" class="custom-control-label"></label>
+            @Html.EditorFor(model => model.CommodityName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="row">
+            <label asp-for="DataItem" class="custom-control-label"></label>
+            @Html.EditorFor(model => model.DataItem, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="row">
+            <label asp-for="Group.GroupName" class="custom-control-label"></label>
+           <select asp-for="Group.GroupName" class="form-control" asp-items="@(new SelectList(@ViewBag.GroupName))"></select>
+        </div>
+</form>
+}
+@*<div class="form-horizontal">
+    <div>Employee</div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.CommodityName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CommodityName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CommodityName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataItem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataItem, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataItem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Group.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
+  
+
+         @Html.DropDownList(model => model.Group.GroupName, (IEnumerable
+         <Group>)ViewBag["GroupName"])
+
+
+            @Html.ValidationMessageFor(model => model.Group.GroupName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sector.SectorName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @foreach (var item in (IEnumerable<Sector>)ViewBag.sector)
+            {
+                <select multiple>
+                    <option value="@item">@item</option>
+                    </select>
+            }
+
+
+                    @Html.ValidationMessageFor(model => model.Sector.SectorName, "", new { @class = "text-danger" })
+            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CV, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+} *@    
