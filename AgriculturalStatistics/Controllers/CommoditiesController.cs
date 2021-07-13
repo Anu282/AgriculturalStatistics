@@ -46,7 +46,7 @@ namespace AgriculturalStatistics.Controllers
             var group = _context.Groups.ToList();
 
             var viewmodel = new CommodityViewModel()
-            { Commodity = new Commodity(),
+            {   Commodity = new Commodity(),
                 GroupList = group,
                 SectorList = sector
             };
@@ -57,7 +57,7 @@ namespace AgriculturalStatistics.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(ViewModel.CommodityViewModel model)
+        public IActionResult Create(CommodityViewModel model)
         {
             try
             {
@@ -85,6 +85,20 @@ namespace AgriculturalStatistics.Controllers
                     else
                         return RedirectToAction("Vegetables", "Commodities");
                 }
+                else
+                {
+                    
+                        var viewModel = new CommodityViewModel
+                        {
+                            Commodity = model.Commodity,
+                            GroupList = _context.Groups.ToList(),
+                            SectorList=_context.Sectors.ToList()
+                        };
+
+                        return View("Create", viewModel);
+                    
+                }
+                
             }
             catch(DbUpdateException)
             {
@@ -137,7 +151,31 @@ namespace AgriculturalStatistics.Controllers
                     commodityindb.Sector = model.Commodity.Sector;
                     _context.Commodities.Update(commodityindb);
                     _context.SaveChanges();
-                    return RedirectToAction("Vegetables", "Commodities");
+                    if (commodityindb.Group.GroupName == "VEGETABLES")
+
+                        return RedirectToAction("Vegetables", "Commodities");
+
+                    else if (commodityindb.Group.GroupName == "FRUIT & TREE NUTS")
+
+                        return RedirectToAction("FruitsandNuts", "Commodities");
+
+                    else if (commodityindb.Group.GroupName == "DAIRY")
+
+                        return RedirectToAction("Dairy", "Commodities");
+
+                    else
+                        return RedirectToAction("Vegetables", "Commodities");
+                }
+                else
+                {
+                    var viewModel = new CommodityViewModel
+                    {
+                        Commodity = model.Commodity,
+                        GroupList = _context.Groups.ToList(),
+                        SectorList = _context.Sectors.ToList()
+                    };
+
+                    return View("Edit", viewModel);
                 }
             }
             catch(DbUpdateException)
@@ -150,10 +188,23 @@ namespace AgriculturalStatistics.Controllers
 
         public IActionResult Delete(int id)
         {
-            var Commodity = _context.Commodities.SingleOrDefault(c => c.CommodityID == id);
+            var Commodity = _context.Commodities.Include(c=>c.Group).SingleOrDefault(c => c.CommodityID == id);
             _context.Commodities.Remove(Commodity);
             _context.SaveChanges();
-            return RedirectToAction("Vegetables");
+            if (Commodity.Group.GroupName == "VEGETABLES")
+
+                return RedirectToAction("Vegetables", "Commodities");
+
+            else if (Commodity.Group.GroupName == "FRUIT & TREE NUTS")
+
+                return RedirectToAction("FruitsandNuts", "Commodities");
+
+            else if (Commodity.Group.GroupName == "DAIRY")
+
+                return RedirectToAction("Dairy", "Commodities");
+
+            else
+                return RedirectToAction("Vegetables", "Commodities");
         }
 
         public IActionResult Aboutus()

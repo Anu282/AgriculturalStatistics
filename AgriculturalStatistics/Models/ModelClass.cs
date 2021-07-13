@@ -45,13 +45,12 @@ namespace AgriculturalStatistics.Models
         [Display(Name = "Geography")]
         public string Geography { get; set; }
         [Required]
-        [RegularExpression(@"^\d+\.\d{0}$")]
-        [Range(0, 9999999999999999)]
+       
         [Display(Name = "Value")]
         public double Value { get; set; }
         [Required]
-        [RegularExpression(@"^\d+\.\d{0}$")]
-        [Range(0, 9999999999999999)]
+       // [RegularExpression(@"^\d+\.\d{0}$")]
+       // [Range(0, 9999999999999999)]
         [Display(Name = "CV")]
         public double CV { get; set; }
         [Required]
