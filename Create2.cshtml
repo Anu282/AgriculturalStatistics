@@ -1,0 +1,90 @@
+﻿@*@model AgriculturalStatistics.Models.Commodity
+
+
+@{ ViewData["Title"] = "Create"; }
+
+<div class="container-fluid">
+    <div class="card text-center">
+        <div class="card-body">
+            <h4 class="card-title text-center">Please Update The Park Details Below</h4>
+
+            <form method="post" asp-controller="Home" asp-action="Create">
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="CommodityName">Commodity</label>
+                        <div>
+                            <textbox class="form-control" asp-for="CommodityName"></textbox>
+                            <span asp-validation-for="CommodityName"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="DataItem">DataItem</label>
+                        <div>
+                            <textbox class="form-control" asp-for="DataItem"></textbox>
+                            <span asp-validation-for="DataItem"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="Geography">Geography</label>
+                        <div>
+                            <textbox class="form-control" asp-for="Geography"></textbox>
+                            <span asp-validation-for="Geography"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="CV">CV</label>
+                        <div>
+                            <textbox class="form-control" asp-for="CV"></textbox>
+                            <span asp-validation-for="CV"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="Value">Value</label>
+                            <div>
+                                <textbox class="form-control" asp-for="Value"></textbox>
+                                <span asp-validation-for="Value"></span>
+                            </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="Group.GroupName">State</label>
+                        <div>
+                            <select multiple asp-for="statenames">
+                                @foreach (var item in ViewBag.statedict.Keys)
+                                {
+                    <textbox @ViewBag.group.Value</textbox>}
+                            </select>
+                            <span asp-validation-for="statenames"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-success">
+                    <div class="form-group">
+                        <label asp-for="activitynames">Activities</label>
+                        <div>
+                            <select multiple asp-for="activitynames">
+                                @foreach (var item in ViewBag.activitynames)
+                                {
+                    <option value="@item">@item</option>}
+                            </select>
+                            <span asp-validation-for="activitynames"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <button class="btn btn-success" type="submit" name="action"> Click to Create a New Park </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>*@

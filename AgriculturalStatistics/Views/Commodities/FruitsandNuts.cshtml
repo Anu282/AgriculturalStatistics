@@ -37,9 +37,8 @@
                 <td>@item.Value</td>
                 <td>@item.CV</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CommodityID }) |
-                    @Html.ActionLink("Details", "Detail", new { id = item.CommodityID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CommodityID })
+                    @Html.ActionLink("Edit", "Edit","Commodities", new { id = item.CommodityID }) |
+                    @Html.ActionLink("Delete", "Delete","Commodities", new { id = item.CommodityID })
                 </td>
             </tr>
 

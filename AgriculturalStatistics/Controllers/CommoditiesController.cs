@@ -5,12 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AgriculturalStatistics.DataAccess;
 using Microsoft.EntityFrameworkCore;
+using AgriculturalStatistics.ViewModel;
 using AgriculturalStatistics.Models;
 
 namespace AgriculturalStatistics.Controllers
 {
-    
-   
+
+
     public class CommoditiesController : Controller
     {
         private readonly ApplicationDBContext _context;
@@ -21,9 +22,9 @@ namespace AgriculturalStatistics.Controllers
         }
         public IActionResult Vegetables()
         {
-           var vegetables= _context.Commodities.Include(p=>p.Group).Include(p=>p.Sector).Where(c => c.Group.GroupID == 20).ToList();
-           ViewData["Vegetables"] = vegetables;
-           return View();
+            var vegetables = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 20).ToList();
+            ViewData["Vegetables"] = vegetables;
+            return View();
         }
         public IActionResult FruitsandNuts()
         {
@@ -40,25 +41,119 @@ namespace AgriculturalStatistics.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-           /* Dictionary<int, string> group = new Dictionary<int, string>();
-            foreach (Group i in _context.Groups)
-            {
-                group.Add(i.GroupID, i.GroupName);
-            }*/
-            List<Sector> sector =  _context.Sectors.ToList();
-            ViewBag.GroupName = _context.Groups.ToList();
-            ViewBag.SectorName = sector;
-            return View();
-           
+
+            var sector = _context.Sectors.ToList();
+            var group = _context.Groups.ToList();
+
+            var viewmodel = new CommodityViewModel()
+            { Commodity = new Commodity(),
+                GroupList = group,
+                SectorList = sector
+            };
+            return View(viewmodel);
+
         }
+       
 
         [HttpPost]
-        public IActionResult Create(Commodity model)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ViewModel.CommodityViewModel model)
         {
-            _context.Commodities.Add(model);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.Commodity.Group = _context.Groups.Where(p => p.GroupName == model.Commodity.Group.GroupName).FirstOrDefault();
+                    model.Commodity.Sector = _context.Sectors.Where(p => p.SectorName == model.Commodity.Sector.SectorName).FirstOrDefault();
+                    var commodity = model.Commodity.Group.GroupName;
+
+                    _context.Commodities.Add(model.Commodity);
+                    _context.SaveChanges();
+
+                    if (commodity == "VEGETABLES")
+
+                        return RedirectToAction("Vegetables", "Commodities");
+
+                    else if (commodity == "FRUIT & TREE NUTS")
+
+                        return RedirectToAction("FruitsandNuts", "Commodities");
+
+                    else if (commodity == "DAIRY")
+
+                        return RedirectToAction("Dairy", "Commodities");
+
+                    else
+                        return RedirectToAction("Vegetables", "Commodities");
+                }
+            }
+            catch(DbUpdateException)
+            {
+                ModelState.AddModelError("", "Error Occured");
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var Commodity = _context.Commodities.SingleOrDefault(c => c.CommodityID == id);
+            var sector = _context.Sectors.ToList();
+            var group = _context.Groups.ToList();
+            if (Commodity == null)
+                return NotFound();
+            else
+            {
+               
+                var viewmodel = new CommodityViewModel()
+                {
+                    Commodity = Commodity,
+                    GroupList = group,
+                    SectorList = sector
+
+
+                };
+                return View(viewmodel);
+            }
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(ViewModel.CommodityViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.Commodity.Group = _context.Groups.Where(p => p.GroupName == model.Commodity.Group.GroupName).FirstOrDefault();
+                    model.Commodity.Sector = _context.Sectors.Where(p => p.SectorName == model.Commodity.Sector.SectorName).FirstOrDefault();
+                    var commodityindb = _context.Commodities.Single(c => c.CommodityID == model.Commodity.CommodityID);
+                    commodityindb.CommodityName = model.Commodity.CommodityName;
+                    commodityindb.DataItem = model.Commodity.DataItem;
+                    commodityindb.Geography = model.Commodity.Geography;
+                    commodityindb.CV = model.Commodity.CV;
+                    commodityindb.Value = model.Commodity.Value;
+                    commodityindb.Group = model.Commodity.Group;
+                    commodityindb.Sector = model.Commodity.Sector;
+                    _context.Commodities.Update(commodityindb);
+                    _context.SaveChanges();
+                    return RedirectToAction("Vegetables", "Commodities");
+                }
+            }
+            catch(DbUpdateException)
+            {
+                ModelState.AddModelError("", "Error Occured");
+            }
+            return View(model);
+
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var Commodity = _context.Commodities.SingleOrDefault(c => c.CommodityID == id);
+            _context.Commodities.Remove(Commodity);
             _context.SaveChanges();
-            ViewBag.Message = "Data Insert Successfully";
-            return View();
+            return RedirectToAction("Vegetables");
         }
     }
 }
