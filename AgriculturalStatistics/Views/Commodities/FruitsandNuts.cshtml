@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "FruitsandNuts";
 }
-<div>Index</div>
+
 
 <p class="text-right">
     @Html.ActionLink("Create New", "Create")
@@ -12,37 +12,45 @@
 
 <h3>FruitsandNuts</h3>
 
-<table class="table table-condensed table-hover">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
-            <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
-            <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
-            <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
-            <th>@Html.DisplayNameFor(e => e.DataItem)</th>
-            <th>@Html.DisplayNameFor(e => e.Value)</th>
-            <th>@Html.DisplayNameFor(e => e.CV)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in (IEnumerable<Commodity>)ViewData["FruitsNuts"])
-        {
-            <tr>
-                <td>@item.CommodityID</td>
-                <td>@item.CommodityName</td>
-                <td>@item.Group.GroupName</td>
-                <td>@item.Sector.SectorName</td>
-                <td>@item.DataItem</td>
-                <td>@item.Value</td>
-                <td>@item.CV</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit","Commodities", new { id = item.CommodityID }) |
-                    @Html.ActionLink("Delete", "Delete","Commodities", new { id = item.CommodityID })
-                </td>
-            </tr>
 
-        }
-    </tbody>
-</table>
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <caption style="color: black;">Vegetables sales Statistics report</caption>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
+                    <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
+                    <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
+                    <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
+                    <th>@Html.DisplayNameFor(e => e.DataItem)</th>
+                    <th>@Html.DisplayNameFor(e => e.Value)</th>
+                    <th>@Html.DisplayNameFor(e => e.CV)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (IEnumerable<Commodity>)ViewData["FruitsNuts"])
+                {
+                <tr>
+                    <td>@item.CommodityID</td>
+                    <td>@item.CommodityName</td>
+                    <td>@item.Group.GroupName</td>
+                    <td>@item.Sector.SectorName</td>
+                    <td>@item.DataItem</td>
+                    <td>@item.Value</td>
+                    <td>@item.CV</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
+                        @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+                    </td>
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
 

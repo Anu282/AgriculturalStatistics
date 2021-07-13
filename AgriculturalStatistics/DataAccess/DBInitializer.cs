@@ -28,12 +28,12 @@ namespace AgriculturalStatistics.DataAccess
         {
             context.Database.EnsureCreated();
 
-            //getGroups(context);
-            //getSectors(context);
-            //GetCommodities(context);
-            //GetFruitsCommodities(context);
-            //GetDairy(context);
-            //GetVegetables(context);
+            /*getGroups(context);
+            getSectors(context);
+            GetCommodities(context);
+            GetFruitsCommodities(context);
+            GetDairy(context);
+            GetVegetables(context);*/
         }
 
         public static void getGroups(ApplicationDBContext context)
@@ -188,10 +188,10 @@ namespace AgriculturalStatistics.DataAccess
 
         public static void GetFruitsCommodities(ApplicationDBContext context)
         {
-            if (context.Commodities.Any())
+            /*if (context.Commodities.Any())
             {
                 return;
-            }
+            }*/
 
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -257,10 +257,10 @@ namespace AgriculturalStatistics.DataAccess
 
         public static void GetDairy(ApplicationDBContext context)
         {
-            if (context.Commodities.Any())
+            /*if (context.Commodities.Any())
             {
                 return;
-            }
+            }*/
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
@@ -321,10 +321,10 @@ namespace AgriculturalStatistics.DataAccess
         }
         public static void GetVegetables(ApplicationDBContext context)
         {
-            if (context.Commodities.Any())
+            /*if (context.Commodities.Any())
             {
                 return;
-            }
+            }*/
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);

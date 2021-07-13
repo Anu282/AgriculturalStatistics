@@ -155,5 +155,11 @@ namespace AgriculturalStatistics.Controllers
             _context.SaveChanges();
             return RedirectToAction("Vegetables");
         }
+
+        public IActionResult Aboutus()
+        {
+            
+            return View();
+        }
     }
 }
