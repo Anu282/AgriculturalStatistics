@@ -56,17 +56,7 @@
         @Html.DropDownListFor(m => m.Commodity.Sector.SectorName, new SelectList(Model.SectorList, "SectorName", "SectorName"), "Select Sector", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Commodity.Sector.SectorName)
         
-    </div>
-    <div class="form-group" hidden="hidden">
-        @Html.LabelFor(m => m.GroupList)
-        <!--label>Sector</label-->
-        @Html.DropDownListFor(m => m.GroupList, new SelectList(Model.GroupList, "GroupName", "GroupName"), "Select Group", new { @class = "form-control" })
-    </div>
-    <div class="form-group" hidden="hidden">
-        @Html.LabelFor(m => m.SectorList)
-        <!--label>Sector</label-->
-        @Html.DropDownListFor(m => m.SectorList, new SelectList(Model.SectorList, "SectorName", "SectorName"), "Select Group", new { @class = "form-control" })
-    </div>
+    </div>  
     <button type="submit" class="btn btn-primary">Save</button>
 }
 

@@ -121,7 +121,7 @@ namespace AgriculturalStatistics.DataAccess
         }
         public static void GetCommodities(ApplicationDBContext context)
         {
-            if (context.Commodities.Any())
+            if (context.Commodities.Where(c=> c.Group.GroupName == "FRUIT & TREE NUTS").Any())
             {
                 return;
             }
@@ -188,10 +188,10 @@ namespace AgriculturalStatistics.DataAccess
 
         public static void GetFruitsCommodities(ApplicationDBContext context)
         {
-            /*if (context.Commodities.Any())
+            if (context.Commodities.Where(c=>c.Group.GroupName== "FRUIT & TREE NUTS").Any())
             {
                 return;
-            }*/
+            }
 
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -257,10 +257,10 @@ namespace AgriculturalStatistics.DataAccess
 
         public static void GetDairy(ApplicationDBContext context)
         {
-            /*if (context.Commodities.Any())
+            if (context.Commodities.Where(c => c.Group.GroupName == "DAIRY").Any())
             {
                 return;
-            }*/
+            }
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
@@ -321,10 +321,10 @@ namespace AgriculturalStatistics.DataAccess
         }
         public static void GetVegetables(ApplicationDBContext context)
         {
-            /*if (context.Commodities.Any())
+            if (context.Commodities.Where(c => c.Group.GroupName == "VEGETABLES").Any())
             {
                 return;
-            }*/
+            }
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Add("X-Api-Key", API_KEY);
