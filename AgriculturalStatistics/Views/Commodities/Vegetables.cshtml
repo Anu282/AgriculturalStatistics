@@ -1,57 +1,73 @@
 ﻿
-@model IEnumerable<Commodity>
-@{
-    ViewBag.Title = "Vegetables";
-}
+<style>
+    .table-bordered td, .table-bordered th {
+        border: 2px solid #641c29;
+    }
+
+    .container-fluid {
+        font-size: medium;
+        height: auto;
+        max-height: 150%;
+        overflow: auto;
+    }
+
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #641c29;
+    }
+</style>
+<body  style="background: url(/images/vegetables.png);">
+    <div class="container-fluid">
+        <br />
+        @model IEnumerable<Commodity>
+            @{
+                ViewBag.Title = "Vegetables";
+            }
 
 
-<p class="text-right">
-    @Html.ActionLink("Create New", "Create")
-</p>
+            <p class="text-right">
+                @Html.ActionLink("Create New", "Create")
+            </p>
 
-<h3>Vegetables</h3>
+            <h3>Vegetables</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <caption style="color: black;">Vegetables sales Statistics report</caption>
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
+                            <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
+                            <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
+                            <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
+                            <th>@Html.DisplayNameFor(e => e.DataItem)</th>
+                            <th>@Html.DisplayNameFor(e => e.Value)</th>
+                            <th>@Html.DisplayNameFor(e => e.CV)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (IEnumerable<Commodity>)ViewData["Vegetables"])
+                        {
+                            <tr>
+                                <td>@item.CommodityID</td>
+                                <td>@item.CommodityName</td>
+                                <td>@item.Group.GroupName</td>
+                                <td>@item.Sector.SectorName</td>
+                                <td>@item.DataItem</td>
+                                <td>@item.Value</td>
+                                <td>@item.CV</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
+                                    @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+                                </td>
+                            </tr>
 
+                        }
 
-
-
-<div class="container" style="background-image: @Url.Content("~/images/vegetables.png")>
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <caption style="color: black;">Vegetables sales Statistics report</caption>
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
-                    <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
-                    <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
-                    <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
-                    <th>@Html.DisplayNameFor(e => e.DataItem)</th>
-                    <th>@Html.DisplayNameFor(e => e.Value)</th>
-                    <th>@Html.DisplayNameFor(e => e.CV)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in (IEnumerable<Commodity>)ViewData["Vegetables"])
-                {
-                    <tr>
-                        <td>@item.CommodityID</td>
-                        <td>@item.CommodityName</td>
-                        <td>@item.Group.GroupName</td>
-                        <td>@item.Sector.SectorName</td>
-                        <td>@item.DataItem</td>
-                        <td>@item.Value</td>
-                        <td>@item.CV</td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
-                            @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
-                        </td>
-                    </tr>
-
-                }
-
-            </tbody>
-        </table>
-    </div>
-</div>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 
 
