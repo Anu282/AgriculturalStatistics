@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - AgriculturalStatistics</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 </head>
 <body>
     <header>
@@ -30,6 +31,9 @@
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link" asp-area="" asp-controller="Commodities" asp-action="Dairy">Dairy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Commodities" asp-action="statistics">Statistics</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Commodities" asp-action="Aboutus">AboutUs</a>

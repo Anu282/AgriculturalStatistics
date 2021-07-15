@@ -212,5 +212,10 @@ namespace AgriculturalStatistics.Controllers
             
             return View();
         }
+        public IActionResult statistics()
+        {
+
+            return View();
+        }
     }
 }
