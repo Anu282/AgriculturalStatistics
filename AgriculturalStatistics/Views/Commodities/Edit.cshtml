@@ -39,6 +39,12 @@
     @Html.ValidationMessageFor(m => m.Commodity.Geography)
 </div>
 <div class="form-group">
+    @Html.LabelFor(m => m.Commodity.Domain)
+    <!--label>CV</label-->
+    @Html.TextBoxFor(m => m.Commodity.Domain, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Commodity.Domain)
+</div>
+<div class="form-group">
     @Html.LabelFor(m => m.Commodity.Value)
     <!--label>CV</label-->
     @Html.TextBoxFor(m => m.Commodity.Value, new { @class = "form-control" })

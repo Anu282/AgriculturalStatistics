@@ -16,6 +16,7 @@ namespace AgriculturalStatistics.Models
         [Key]
         public int SectorID { get; set; }
         [Required]
+        [Display(Name = "Sector Name")]
         public string SectorName { get; set; }
     }
     public class Group
@@ -23,6 +24,7 @@ namespace AgriculturalStatistics.Models
         [Key]
         public int GroupID { get; set; }
         [Required]
+        [Display(Name = "Group Name")]
         public string GroupName { get; set; }
 
     }
@@ -37,7 +39,7 @@ namespace AgriculturalStatistics.Models
         [Required]
         [Display(Name = "Commodity")]
         public string CommodityName { get; set; }
-        
+        //[RegularExpression(@"^(\d{4})$", ErrorMessage = "Enter a valid 4 digit Year")]
         [Display(Name = "Year")]
         public string Year { get; set; }
         [Required]
@@ -45,12 +47,14 @@ namespace AgriculturalStatistics.Models
         [Display(Name = "Geography")]
         public string Geography { get; set; }
         [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Domain")]
+        public string Domain { get; set; }
+        [Required]
        
         [Display(Name = "Value")]
         public double Value { get; set; }
         [Required]
-       // [RegularExpression(@"^\d+\.\d{0}$")]
-       // [Range(0, 9999999999999999)]
         [Display(Name = "CV")]
         public double CV { get; set; }
         [Required]

@@ -44,10 +44,12 @@
                     <caption style="color: white;">Fruits and Nuts sales Statistics report</caption>
                     <thead>
                         <tr>
-                            <th>@Html.DisplayNameFor(e => e.CommodityID)</th>
+
                             <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
                             <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
                             <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
+                            <th>@Html.DisplayNameFor(e => e.Domain)</th>
+                            <th>@Html.DisplayNameFor(e => e.Year)</th>
                             <th>@Html.DisplayNameFor(e => e.DataItem)</th>
                             <th>@Html.DisplayNameFor(e => e.Value)</th>
                             <th>@Html.DisplayNameFor(e => e.CV)</th>
@@ -57,19 +59,21 @@
                     <tbody>
                         @foreach (var item in (IEnumerable<Commodity>)ViewData["FruitsNuts"])
                         {
-                            <tr>
-                                <td>@item.CommodityID</td>
-                                <td>@item.CommodityName</td>
-                                <td>@item.Group.GroupName</td>
-                                <td>@item.Sector.SectorName</td>
-                                <td>@item.DataItem</td>
-                                <td>@item.Value</td>
-                                <td>@item.CV</td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
-                                    @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
-                                </td>
-                            </tr>
+                        <tr>
+
+                            <td>@item.CommodityName</td>
+                            <td>@item.Group.GroupName</td>
+                            <td>@item.Sector.SectorName</td>
+                            <td>@item.Domain</td>
+                            <td>@item.Year</td>
+                            <td>@item.DataItem</td>
+                            <td>@item.Value</td>
+                            <td>@item.CV</td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
+                                @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+                            </td>
+                        </tr>
 
                         }
 

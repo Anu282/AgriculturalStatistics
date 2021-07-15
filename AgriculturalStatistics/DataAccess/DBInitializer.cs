@@ -28,12 +28,12 @@ namespace AgriculturalStatistics.DataAccess
         {
             context.Database.EnsureCreated();
 
-            /*getGroups(context);
+            getGroups(context);
             getSectors(context);
             GetCommodities(context);
             GetFruitsCommodities(context);
             GetDairy(context);
-            GetVegetables(context);*/
+            GetVegetables(context);
         }
 
         public static void getGroups(ApplicationDBContext context)
@@ -131,7 +131,8 @@ namespace AgriculturalStatistics.DataAccess
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            string Fruits_API_PATH = BASE_URL + "/?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=FIELD%20CROPS&statisticcat_desc=SALES&year__GE=2018&state_alpha=VA&unit_desc=$&format=JSON";
+            //string Fruits_API_PATH = BASE_URL + "/?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=FIELD%20CROPS&statisticcat_desc=SALES&year__GE=2018&state_alpha=VA&unit_desc=$&format=JSON";
+            string Fruits_API_PATH = "https://quickstats.nass.usda.gov/api/api_GET/?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=FRUIT%20%26%20TREE%20NUTS&statisticcat_desc=SALES&year__GE=2012&state_alpha=US&unit_desc=$&format=JSON";
             string CommodityData = "";
             
             httpClient.BaseAddress = new Uri(Fruits_API_PATH);
@@ -157,13 +158,14 @@ namespace AgriculturalStatistics.DataAccess
                     {
                      
                         string groupname = ((string)jsonbrand["group_desc"]);
-                        string sectorname = ((string)(string)jsonbrand["sector_desc"]);
+                        string sectorname = ((string)jsonbrand["sector_desc"]);
                        Commodity fruits = new Commodity
                         {
                             CommodityName = (string)jsonbrand["commodity_desc"],
                             DataItem = (string)jsonbrand["short_desc"],
                             Year = (string)jsonbrand["year"],
                             Geography = (string)jsonbrand["state_name"],
+                            Domain = (string)jsonbrand["domaincat_desc"],
                             CV = (double)jsonbrand["CV (%)"],
                             Value = (double)jsonbrand["Value"],
                             Group=context.Groups.Where(c=>c.GroupName== groupname).FirstOrDefault(),
@@ -224,13 +226,14 @@ namespace AgriculturalStatistics.DataAccess
                     foreach (JObject jsonbrand in jarraybrands)
                     {
                         string groupname = ((string)jsonbrand["group_desc"]);
-                        string sectorname = ((string)(string)jsonbrand["sector_desc"]);
+                        string sectorname = ((string)jsonbrand["sector_desc"]);
                         Commodity fruits = new Commodity
                         {
                             CommodityName = (string)jsonbrand["commodity_desc"],
                             DataItem = (string)jsonbrand["short_desc"],
                             Year = (string)jsonbrand["year"],
                             Geography = (string)jsonbrand["state_name"],
+                            Domain = (string)jsonbrand["domaincat_desc"],
                             CV = (double)jsonbrand["CV (%)"],
                             Value = (double)jsonbrand["Value"],
                             Group = context.Groups.Where(c => c.GroupName == groupname).FirstOrDefault(),
@@ -267,7 +270,8 @@ namespace AgriculturalStatistics.DataAccess
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            string Fruits_API_PATH = BASE_URL + "?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=ANIMALS%20%26%20PRODUCTS&group_desc=DAIRY&statisticcat_desc=SALES&year__GE=2019&unit_desc=$&format=JSON";
+            //string Fruits_API_PATH = BASE_URL + "?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=ANIMALS%20%26%20PRODUCTS&group_desc=DAIRY&statisticcat_desc=SALES&year__GE=2019&unit_desc=$&format=JSON";
+            string Fruits_API_PATH = "https://quickstats.nass.usda.gov/api/api_GET/?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=ANIMALS%20%26%20PRODUCTS&group_desc=DAIRY&statisticcat_desc=SALES&year_GE=2017&agg_level_desc=NATIONAL&unit_desc=$&format=JSON";
             string CommodityData = "";
            
             httpClient.BaseAddress = new Uri(Fruits_API_PATH);
@@ -293,13 +297,14 @@ namespace AgriculturalStatistics.DataAccess
                     {
                        
                         string groupname = ((string)jsonbrand["group_desc"]);
-                        string sectorname = ((string)(string)jsonbrand["sector_desc"]);
+                        string sectorname = ((string)jsonbrand["sector_desc"]);
                         Commodity dairy = new Commodity
                         {
                             CommodityName = (string)jsonbrand["commodity_desc"],
                             DataItem = (string)jsonbrand["short_desc"],
                             Year = (string)jsonbrand["year"],
                             Geography = (string)jsonbrand["state_name"],
+                            Domain = (string)jsonbrand["domaincat_desc"],
                             CV = (double)jsonbrand["CV (%)"],
                             Value = (double)jsonbrand["Value"],
                             Group = context.Groups.Where(c => c.GroupName == groupname).FirstOrDefault(),
@@ -331,7 +336,8 @@ namespace AgriculturalStatistics.DataAccess
             httpClient.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-            string Fruits_API_PATH = BASE_URL + "?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=VEGETABLES&statisticcat_desc=SALES&year__GE=2019&state_alpha=VA&unit_desc=$&format=JSON";
+            //string Fruits_API_PATH = BASE_URL + "?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=VEGETABLES&statisticcat_desc=SALES&year__GE=2019&state_alpha=VA&unit_desc=$&format=JSON";
+            string Fruits_API_PATH = "https://quickstats.nass.usda.gov/api/api_GET/?key=7887F66A-0938-3A5B-9B7D-8F4524BE5665&source_desc=CENSUS&sector_desc=CROPS&group_desc=VEGETABLES&statisticcat_desc=SALES&year__GE=2016&agg_level_desc=NATIONAL&unit_desc=$&format=JSON";
             string CommodityData = "";
             httpClient.BaseAddress = new Uri(Fruits_API_PATH);
            
@@ -357,13 +363,14 @@ namespace AgriculturalStatistics.DataAccess
                       
 
                         string groupname = ((string)jsonbrand["group_desc"]);
-                        string sectorname = ((string)(string)jsonbrand["sector_desc"]);
+                        string sectorname = ((string)jsonbrand["sector_desc"]);
                         Commodity dairy = new Commodity
                         {
                             CommodityName = (string)jsonbrand["commodity_desc"],
                             DataItem = (string)jsonbrand["short_desc"],
                             Year = (string)jsonbrand["year"],
                             Geography = (string)jsonbrand["state_name"],
+                            Domain = (string)jsonbrand["domaincat_desc"],
                             CV = (double)jsonbrand["CV (%)"],
                             Value = (double)jsonbrand["Value"],
                             Group = context.Groups.Where(c => c.GroupName == groupname).FirstOrDefault(),
