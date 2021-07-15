@@ -1,27 +1,29 @@
-﻿
-<div class="container">
-    <canvas id="bar-chart"></canvas>
-</div>
+﻿@model IEnumerable<Commodity>
+    <div class="container">
+        <canvas id="bar-chart"></canvas>
+    </div>
 
-<script>
-    new Chart(document.getElementById("bar-chart"), {
-    type: 'bar',
-    data: {
-      labels: ["Vegetables", "Dairy", "Fruits&Nuts", "Field crops"],
-      datasets: [
-        {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-          data: [2478,5267,734,784]
-        }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Predicted sales for the commodities (millions) in 2050'
-      }
-    }
-});
-</script>
+    <script>
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+                labels: ["Vegetables", "Dairy", "Fruits&Nuts"],
+                datasets: [
+                    {
+                        label: "Value (millions)",
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                        data: [@ViewData["totalVegetables"],@ViewData["totalDairy"], @ViewData["totalFruitsandNuts"]]
+                    }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: 'Average values for the Vegetables,Dairy and Fruits&Nuts (In Million $)'
+                }
+            }
+        });
+    </script>
+
+   

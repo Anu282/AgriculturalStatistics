@@ -10,8 +10,6 @@ using AgriculturalStatistics.Models;
 
 namespace AgriculturalStatistics.Controllers
 {
-
-
     public class CommoditiesController : Controller
     {
         private readonly ApplicationDBContext _context;
@@ -215,6 +213,34 @@ namespace AgriculturalStatistics.Controllers
         public IActionResult statistics()
         {
 
+            var dairy = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 5).ToList();
+            Console.WriteLine(dairy);
+            double totalDairy = 0;
+            foreach (var i in dairy)
+            {
+                totalDairy = totalDairy+i.Value;
+            }
+            ViewData["totalDairy"] = totalDairy/(dairy.Count*10000000);
+
+            var vegetables = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 20).ToList();
+            
+            double totalVegetables = 0;
+            foreach (var i in vegetables)
+            {
+                totalVegetables = totalVegetables + i.Value;
+            }
+            ViewData["totalVegetables"] = totalVegetables/(vegetables.Count* 10000000);
+            Console.WriteLine("Veggg");
+            var fruitsnuts = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 10).ToList();
+            double totalFruitsandNuts = 0;
+            foreach (var i in fruitsnuts)
+            {
+                totalFruitsandNuts = totalFruitsandNuts + i.Value;
+            }
+            ViewData["totalFruitsandNuts"] = totalFruitsandNuts/(fruitsnuts.Count* 10000000);
+            Console.WriteLine(totalFruitsandNuts);
+            Console.WriteLine(totalVegetables);
+            Console.WriteLine(totalDairy);
             return View();
         }
     }
