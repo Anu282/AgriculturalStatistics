@@ -7,12 +7,12 @@
         new Chart(document.getElementById("bar-chart"), {
             type: 'bar',
             data: {
-                labels: ["Vegetables", "Dairy", "Fruits&Nuts"],
+                labels: ["Vegetables", "Dairy", "Fruits&Nuts","Field Crops"],
                 datasets: [
                     {
                         label: "Value (millions)",
                         backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [@ViewData["totalVegetables"],@ViewData["totalDairy"], @ViewData["totalFruitsandNuts"]]
+                        data: [@ViewData["totalVegetables"],@ViewData["totalDairy"], @ViewData["totalFruitsandNuts"],@ViewData["fieldTotal"]]
                     }
                 ]
             },

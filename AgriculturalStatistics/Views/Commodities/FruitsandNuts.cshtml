@@ -4,7 +4,7 @@
         height: 100%;
         font-size: large;
         /* Center and scale the image nicely */
-        background-repeat: no-repeat;
+        
         background-size: cover;
         color: #ffff !important;
     }
@@ -23,7 +23,7 @@
 </style>
 
 
-<body style="background: url(/images/crops.png);">
+<body style="background-image: url(/images/crops.png); background-attachment: fixed; ">
     @using AgriculturalStatistics.Models
     @model IEnumerable<Commodity>
         @{

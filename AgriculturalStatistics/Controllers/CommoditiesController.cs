@@ -214,7 +214,7 @@ namespace AgriculturalStatistics.Controllers
         {
 
             var dairy = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 5).ToList();
-            Console.WriteLine(dairy);
+
             double totalDairy = 0;
             foreach (var i in dairy)
             {
@@ -230,7 +230,6 @@ namespace AgriculturalStatistics.Controllers
                 totalVegetables = totalVegetables + i.Value;
             }
             ViewData["totalVegetables"] = totalVegetables/(vegetables.Count* 10000000);
-            Console.WriteLine("Veggg");
             var fruitsnuts = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 10).ToList();
             double totalFruitsandNuts = 0;
             foreach (var i in fruitsnuts)
@@ -238,9 +237,16 @@ namespace AgriculturalStatistics.Controllers
                 totalFruitsandNuts = totalFruitsandNuts + i.Value;
             }
             ViewData["totalFruitsandNuts"] = totalFruitsandNuts/(fruitsnuts.Count* 10000000);
-            Console.WriteLine(totalFruitsandNuts);
-            Console.WriteLine(totalVegetables);
-            Console.WriteLine(totalDairy);
+            var fieldCrops = _context.Commodities.Include(p => p.Group).Include(p => p.Sector).Where(c => c.Group.GroupID == 9).ToList();
+            double fieldTotal = 0;
+            foreach (var i in fieldCrops)
+            {
+                Console.WriteLine(i.Value);
+                fieldTotal = fieldTotal + i.Value;
+            }
+            ViewData["fieldTotal"] = fieldTotal / (fieldCrops.Count * 10000000);
+            Console.WriteLine(fieldTotal);
+
             return View();
         }
     }
