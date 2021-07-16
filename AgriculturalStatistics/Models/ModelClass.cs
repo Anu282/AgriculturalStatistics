@@ -19,13 +19,16 @@ namespace AgriculturalStatistics.Models
         [Display(Name = "Sector Name")]
         public string SectorName { get; set; }
     }
-    public class Group
+    public class Group: IEqualityComparer<Group>
     {
         [Key]
         public int GroupID { get; set; }
         [Required]
         [Display(Name = "Group Name")]
         public string GroupName { get; set; }
+
+        public bool Equals(Group x, Group y) { return x.GroupID == y.GroupID && x.GroupID == y.GroupID; }
+        public int GetHashCode(Group obj) { return obj.GroupID; }
 
     }
 

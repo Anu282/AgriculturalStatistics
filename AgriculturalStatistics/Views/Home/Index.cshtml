@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,7 +7,7 @@
 <style>
     body {
         background-image: @Url.Content("/images/index.png") ;
-        
+
         font-size: medium;
         color:#ffff;
         /* Center and scale the image nicely */
@@ -30,6 +31,22 @@
                 </p>
             </div>
 
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <caption style="color: white;">Agriculture Statistics report</caption>
+                <thead>
+                </thead>
+                <tbody>
+                    @foreach (var item in (List<string>)ViewData["Groups"])
+                    {
+                    <tr>
+                        <td>@Html.ActionLink(item, item, "Commodities")</td>
+                    </tr>
+
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </body>

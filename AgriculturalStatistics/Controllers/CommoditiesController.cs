@@ -63,6 +63,7 @@ namespace AgriculturalStatistics.Controllers
                 {
                     model.Commodity.Group = _context.Groups.Where(p => p.GroupName == model.Commodity.Group.GroupName).FirstOrDefault();
                     model.Commodity.Sector = _context.Sectors.Where(p => p.SectorName == model.Commodity.Sector.SectorName).FirstOrDefault();
+                    model.Commodity.Year = DateTime.Now.Year.ToString();
                     var commodity = model.Commodity.Group.GroupName;
 
                     _context.Commodities.Add(model.Commodity);

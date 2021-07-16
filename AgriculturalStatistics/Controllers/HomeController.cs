@@ -28,7 +28,7 @@ namespace AgriculturalStatistics.Controllers
     public class HomeController : Controller
     {
         HttpClient httpClient;
-       // public ApplicationDBContext dbContext;
+        public ApplicationDBContext dbContext;
         static string BASE_URL = "http://quickstats.nass.usda.gov/api/api_GET/";
         static string API_KEY = "7887F66A-0938-3A5B-9B7D-8F4524BE5665";
         /// <summary>
@@ -37,19 +37,33 @@ namespace AgriculturalStatistics.Controllers
 
         private readonly ILogger<HomeController> _logger;
 
-        /* public HomeController(ApplicationDBContext context)
+         public HomeController(ApplicationDBContext context)
          {
              dbContext = context;
-         }*/
+         }
 
-        public HomeController()
+        /*public HomeController()
         {
             
-        }
+        }*/
         public IActionResult Index()
         {
-            
+            var groups = (from g in dbContext.Groups
+                          join c in dbContext.Commodities on g.GroupID equals c.Group.GroupID
+                          select g.GroupName);
+            groups = groups.Distinct();
+
+            List<string> Group = new List<string>(groups.Count());
+            foreach(var item in groups)
+            {
+                if (item == "FRUIT & TREE NUTS")
+                    Group.Add("FruitsandNuts");
+                else
+                    Group.Add(item);
+            }
+            ViewData["Groups"] = Group;
             return View();
+           
         }
        
 
