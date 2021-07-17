@@ -19,18 +19,21 @@
     }
 </style>
 <body style="background-image: url(/images/index.png);">
-    <div class="container-fluid" style=" font-family: cursive;">
+    <div class="container" style=" font-family: cursive;">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-12">
                 <h3 align="center">Welcome..!!</h3>
-                <p class="lead text-center" style="width: 50%;
-			position: relative;
-			left: 26%;">
+                <p>
                     Agricultural Stats website provides information of aggregates related to US agricultural production obtained from QuickStats
                     online database from National Agricultural Statistics Service (NASS). Agricultural Stats provides information about sales information on all agricultural produce like
                     crops,vegetables,fruits,nuts and dairy.
 
 
+                </p>
+                <p>
+                    The datasets are obtained from
+                    <a style="color: #0366d6" href="https://catalog.data.gov/dataset/quick-stats-agricultural-database">https://catalog.data.gov/dataset/quick-stats-agricultural-database.</a>
+                    Below are the groups of commodities displayed in AgriculturalStatistics website.
                 </p>
             </div>
 
@@ -38,21 +41,24 @@
         
         <ul style=" left: 44%; position: relative;
      cursor:pointer;
-    
+
      text-decoration:underline;
-" >
+">
             @foreach (var item in (List<string>)ViewData["Groups"])
             {
-                
-            <li>@Html.ActionLink(item.ToString().ToUpper(), item, "Commodities")</li>
-                
+
+                <li>@Html.ActionLink(item.ToString().ToUpper(), item, "Commodities")</li>
+
 
             }
         </ul>
+
+
     </div>
+    
 </body>
 <footer class="border-top footer text-muted">
     <div style="color:white" class="container">
-        &copy; 2021 - AgriculturalStatistics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2021 - AgriculturalStatistics - <a style="color: #0366d6" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </div>
 </footer>
