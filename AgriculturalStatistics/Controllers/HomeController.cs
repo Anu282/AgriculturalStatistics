@@ -29,8 +29,7 @@ namespace AgriculturalStatistics.Controllers
     {
         HttpClient httpClient;
         public ApplicationDBContext dbContext;
-        static string BASE_URL = "http://quickstats.nass.usda.gov/api/api_GET/";
-        static string API_KEY = "7887F66A-0938-3A5B-9B7D-8F4524BE5665";
+        
         /// <summary>
         ///  Constructor to initialize the connection to the data source
         /// </summary>
@@ -58,7 +57,7 @@ namespace AgriculturalStatistics.Controllers
             {
                 if (item == "FRUIT & TREE NUTS")
                     Group.Add("FruitsandNuts");
-                else
+                else if(item=="VEGETABLES" || item=="DAIRY")
                     Group.Add(item);
             }
             ViewData["Groups"] = Group;
