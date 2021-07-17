@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Commodity>
-    <div class="container">
-        <canvas id="bar-chart"></canvas>
-    </div>
+<div class="container">
+    <canvas id="bar-chart"></canvas>
+</div>
 
-    <script>
+<script>
         new Chart(document.getElementById("bar-chart"), {
             type: 'bar',
             data: {
@@ -24,6 +24,11 @@
                 }
             }
         });
-    </script>
+</script>
 
-   
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2021 - AgriculturalStatistics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
+

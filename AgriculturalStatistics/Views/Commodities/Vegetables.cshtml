@@ -1,22 +1,32 @@
 ﻿
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+
 <style>
-    .table-bordered td, .table-bordered th {
-        border: 2px solid #641c29;
-    }
+            .table-bordered td, .table-bordered th {
+            border: 1px solid #641c29;
+        }
 
-    .container-fluid {
-        font-size: medium;
-        height: auto;
-        max-height: 150%;
-        overflow: auto;
-    }
+        .container-fluid {
+            font-size: medium;
+            height: auto;
+            max-height: 150%;
+            overflow: auto;
+        }
 
-    .table thead th {
-        vertical-align: bottom;
-        border-bottom: 2px solid #641c29;
-    }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #641c29;
+        }
 </style>
-<body  style="background-image: url(/images/vegetables.png); background-attachment: fixed;">
+<script>
+                // Basic example
+        $(document).ready(function () {
+            $('#veg').dataTable();
+        });
+</script>
+<body style="background-image: url(/images/vegetables.png); background-attachment: fixed;">
     <div class="container-fluid">
         <br />
         @model IEnumerable<Commodity>
@@ -26,20 +36,20 @@
 
 
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-6"><h3>Vegetables</h3></div>
-                <div class="col-sm-6" style="float:right">
-                    <button class="btn btn-light">
+                <div class="col-sm-6"><h3 style="float:left">Vegetables</h3></div>
+                <div class="col-sm-6">
+                    <button class="btn btn-light" style="float:right">
                         @Html.ActionLink("Create New", "Create")
                     </button>
                 </div>
             </div>
         </div>
-        
-       
+
+
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table id="veg" class="table table-bordered">
                 <caption style="color: black;">Vegetables sales Statistics report</caption>
                 <thead>
                     <tr>
@@ -69,17 +79,32 @@
                             <td>@item.Value</td>
                             <td>@item.CV</td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
-                                @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button class="btn btn-warning btn-sm">
+                                        @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID })
+                                    </button> &nbsp
+                                    <button class="btn btn-danger btn-sm">
+                                        @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+                                    </button>
+                                </div>
+
+
                             </td>
                         </tr>
 
                     }
 
                 </tbody>
+
             </table>
         </div>
     </div>
-    </body>
+</body>
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2021 - AgriculturalStatistics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
 
 

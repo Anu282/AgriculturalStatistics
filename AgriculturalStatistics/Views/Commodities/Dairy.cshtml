@@ -1,83 +1,119 @@
-﻿<style>
+﻿<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+
+<style>
     body {
         height: 100%;
         font-size: medium;
         /* Center and scale the image nicely */
         background-repeat: no-repeat;
         background-size: cover;
-        color: #ffff !important;
+        color: #ffff;
     }
-
+    .dairy_wrapper{
+        color:white
+    }
     .table-bordered td, .table-bordered th {
-        border: 1px solid #ffff;
-        color: white;
+        border: 1px solid;
     }
-
-
+    .dataTables_paginate .paging_simple_numbers{
+        color:white
+    }
+    thead {
+        color: white
+    } 
 
     .table thead th {
         vertical-align: bottom;
         border-bottom: 2px solid #fff;
     }
 </style>
+<script>
+    // Basic example
+    $(document).ready(function () {
+        $('#dairy').dataTable();
+    });
+</script>
 <body style="background: url(/images/diary.png); background-attachment: fixed;">
     @model IEnumerable<Commodity>
-        @{
-            ViewBag.Title = "Dairy";
-        }
+    @{
+        ViewBag.Title = "Dairy";
+    }
 
 
-        <p class="text-right">
-            @Html.ActionLink("Create New", "Create")
-        </p>
+    <br />
 
-        <h3>Dairy</h3>
+
+    <div class="container-fluid">
+
         <div class="container-fluid">
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <caption style="color: white;">Dairy sales Statistics report</caption>
-                    <thead>
-                        <tr>
-
-                            <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
-                            <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
-                            <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
-                            <th>@Html.DisplayNameFor(e => e.Domain)</th>
-                            <th>@Html.DisplayNameFor(e=>e.Year)</th>
-                            <th>@Html.DisplayNameFor(e => e.DataItem)</th>
-                            <th>@Html.DisplayNameFor(e => e.Value)</th>
-                            <th>@Html.DisplayNameFor(e => e.CV)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in (IEnumerable<Commodity>)ViewData["Dairy"])
-                        {
-                            <tr>
-                               
-                                <td>@item.CommodityName</td>
-                                <td>@item.Group.GroupName</td>
-                                <td>@item.Sector.SectorName</td>
-                                <td>@item.Domain</td>
-                                <td>@item.Year</td>
-                                <td>@item.DataItem</td>
-                                <td>@item.Value</td>
-                                <td>@item.CV</td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID }) |
-                                    @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
-                                </td>
-                            </tr>
-
-                        }
-
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-sm-6"><h3 style="float:left">Dairy</h3></div>
+                <div class="col-sm-6">
+                    <button class="btn btn-light" style="float:right">
+                        @Html.ActionLink("Create New", "Create")
+                    </button>
+                </div>
             </div>
         </div>
-        
+        <div class="table-responsive">
+            <table id="dairy" class="table table-bordered">
+                <caption style="color: white;">Dairy sales Statistics report</caption>
+                <thead>
+                    <tr>
 
-    </body>
+                        <th>@Html.DisplayNameFor(e => e.CommodityName)</th>
+                        <th>@Html.DisplayNameFor(e => e.Group.GroupName)</th>
+                        <th>@Html.DisplayNameFor(e => e.Sector.SectorName)</th>
+                        <th>@Html.DisplayNameFor(e => e.Domain)</th>
+                        <th>@Html.DisplayNameFor(e => e.Year)</th>
+                        <th>@Html.DisplayNameFor(e => e.DataItem)</th>
+                        <th>@Html.DisplayNameFor(e => e.Value)</th>
+                        <th>@Html.DisplayNameFor(e => e.CV)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (IEnumerable<Commodity>)ViewData["Dairy"])
+                    {
+                        <tr>
+
+                            <td>@item.CommodityName</td>
+                            <td>@item.Group.GroupName</td>
+                            <td>@item.Sector.SectorName</td>
+                            <td>@item.Domain</td>
+                            <td>@item.Year</td>
+                            <td>@item.DataItem</td>
+                            <td>@item.Value</td>
+                            <td>@item.CV</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button class="btn btn-warning btn-sm">
+                                        @Html.ActionLink("Edit", "Edit", "Commodities", new { id = item.CommodityID })
+                                    </button> &nbsp
+                                    <button class="btn btn-danger btn-sm">
+                                        @Html.ActionLink("Delete", "Delete", "Commodities", new { id = item.CommodityID })
+                                    </button>
+                                </div>
+
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+<footer class="border-top footer text-muted">
+    <div class="container" style="color: white">
+        &copy; 2021 - AgriculturalStatistics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
 
 
 

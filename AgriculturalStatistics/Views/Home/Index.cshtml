@@ -40,9 +40,9 @@
                 <tbody>
                     @foreach (var item in (List<string>)ViewData["Groups"])
                     {
-                    <tr>
-                        <td>@Html.ActionLink(item, item, "Commodities")</td>
-                    </tr>
+                        <tr>
+                            <td>@Html.ActionLink(item, item, "Commodities")</td>
+                        </tr>
 
                     }
                 </tbody>
@@ -50,3 +50,8 @@
         </div>
     </div>
 </body>
+<footer class="border-top footer text-muted">
+    <div style="color:white" class="container">
+        &copy; 2021 - AgriculturalStatistics - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
