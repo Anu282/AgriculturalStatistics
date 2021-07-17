@@ -11,17 +11,40 @@
         background-size: cover;
         color: #ffff ;
     }
+    label{
+        color:white;
+    }
 
     .table-bordered td, .table-bordered th {
         border: 1px solid ;
         
     }
+    div#fruits_paginate{
+        color:#ffff !important;
+    }
+    .dataTables_paginate .paging_simple_numbers {
+        color: white
+    }
 
+    thead {
+        color: white
+    }
+    .paging_full_numbers a.paginate_button {
+        color: #ffff !important;
+    }
 
-
+    .paging_full_numbers a.paginate_active {
+        color: #ffff !important;
+    }
     .table thead th {
         vertical-align: bottom;
         border-bottom: 2px solid #fff;
+    }
+    #fruits_info{
+        color:#ffff;
+    }
+    a{
+        color:white
     }
 </style>
 <script>
@@ -47,12 +70,13 @@
             <div class="row">
                 <div class="col-sm-6"><h3 style="float:left">FruitsandNuts</h3></div>
                 <div class="col-sm-6">
-                    <button class="btn btn-light" style="float:right">
+                    <button class="btn btn-primary" style="float:right">
                         @Html.ActionLink("Create New", "Create")
                     </button>
                 </div>
             </div>
         </div>
+        <br />
         <div class="table-responsive">
             <table id="fruits" class="table table-bordered">
                 <caption style="color: white;">Fruits and Nuts sales Statistics report</caption>

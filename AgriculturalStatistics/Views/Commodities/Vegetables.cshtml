@@ -15,9 +15,13 @@
             overflow: auto;
         }
 
+
         .table thead th {
             vertical-align: bottom;
-            border-bottom: 2px solid #641c29;
+            border-bottom: 2px solid ;
+        }
+        a{
+            color:white;
         }
 </style>
 <script>
@@ -40,13 +44,13 @@
             <div class="row">
                 <div class="col-sm-6"><h3 style="float:left">Vegetables</h3></div>
                 <div class="col-sm-6">
-                    <button class="btn btn-light" style="float:right">
+                    <button class="btn btn-primary" style="float:right">
                         @Html.ActionLink("Create New", "Create")
                     </button>
                 </div>
             </div>
         </div>
-
+        <br />
 
         <div class="table-responsive">
             <table id="veg" class="table table-bordered">

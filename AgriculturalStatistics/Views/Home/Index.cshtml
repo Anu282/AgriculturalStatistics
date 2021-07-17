@@ -5,6 +5,9 @@
 
 
 <style>
+    a{
+        color:white;
+    }
     body {
         background-image: @Url.Content("/images/index.png") ;
 
@@ -32,22 +35,20 @@
             </div>
 
         </div>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <caption style="color: white;">Agriculture Statistics report</caption>
-                <thead>
-                </thead>
-                <tbody>
-                    @foreach (var item in (List<string>)ViewData["Groups"])
-                    {
-                        <tr>
-                            <td>@Html.ActionLink(item, item, "Commodities")</td>
-                        </tr>
+        
+        <ul style=" left: 44%; position: relative;
+     cursor:pointer;
+    
+     text-decoration:underline;
+" >
+            @foreach (var item in (List<string>)ViewData["Groups"])
+            {
+                
+            <li>@Html.ActionLink(item.ToString().ToUpper(), item, "Commodities")</li>
+                
 
-                    }
-                </tbody>
-            </table>
-        </div>
+            }
+        </ul>
     </div>
 </body>
 <footer class="border-top footer text-muted">

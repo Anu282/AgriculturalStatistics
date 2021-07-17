@@ -13,11 +13,18 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
 </head>
+<style>
+    #mainHeader:hover{
+        color:#ffff !important;
+    }
+</style>
 <body>
     <header>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
-                <h3 style="color:white;">Agricultural Statistics</h3>
+                <h3 style="color:white;" >
+                    <a id="mainHeader" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Agricultural Statistics</a>
+                </h3>
                 <a class="navbar-brand"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
