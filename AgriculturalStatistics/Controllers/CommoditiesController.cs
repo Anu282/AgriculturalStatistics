@@ -148,6 +148,7 @@ namespace AgriculturalStatistics.Controllers
                     commodityindb.Value = model.Commodity.Value;
                     commodityindb.Group = model.Commodity.Group;
                     commodityindb.Sector = model.Commodity.Sector;
+                    commodityindb.Domain = model.Commodity.Domain;
                     _context.Commodities.Update(commodityindb);
                     _context.SaveChanges();
                     if (commodityindb.Group.GroupName == "VEGETABLES")
